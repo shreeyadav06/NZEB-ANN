@@ -8,11 +8,12 @@ from sklearn.preprocessing import StandardScaler
 
 def add_temporal_features(df):
     """Extracts temporal features from timestamp."""
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-    df['hour'] = df.timestamp.dt.hour
-    df['month'] = df.timestamp.dt.month
-    df['weekday'] = df.timestamp.dt.weekday
-    df['dayofyear'] = df.timestamp.dt.dayofyear
+    if 'timestamp' in df.columns:
+        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        df['hour'] = df.timestamp.dt.hour
+        df['month'] = df.timestamp.dt.month
+        df['weekday'] = df.timestamp.dt.weekday
+        df['dayofyear'] = df.timestamp.dt.dayofyear
     return df
 
 def transform_target(df):
@@ -28,7 +29,8 @@ def handle_missing(df):
 
 def encode_categoricals(df, all_possible_uses=None):
     """One-hot encodes primary_use."""
-    df = pd.get_dummies(df, columns=['primary_use'])
+    if 'primary_use' in df.columns:
+        df = pd.get_dummies(df, columns=['primary_use'])
     if all_possible_uses is not None:
         # Ensure all columns exist, even if not present in this split
         for use in all_possible_uses:

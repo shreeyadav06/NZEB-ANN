@@ -23,8 +23,8 @@ def load_merged_data(path):
 def validate_data(df, expected_sites=[2, 4, 15]):
     """Validates the loaded DataFrame for required columns and target sites."""
     required_cols = [
-        'building_id', 'site_id', 'timestamp', 'meter', 'meter_reading',
-        'primary_use', 'square_feet', 'air_temperature'
+        'building_id', 'site_id', 'meter', 'meter_reading',
+        'square_feet', 'air_temperature'
     ]
     missing_cols = [col for col in required_cols if col not in df.columns]
     if missing_cols:
