@@ -44,3 +44,7 @@ figures/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# implementation plan
+implementation_plan.md
+
