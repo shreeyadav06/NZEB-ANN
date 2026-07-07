@@ -44,3 +44,38 @@ def log_experiment(result_dict, csv_path):
 def results_to_dataframe(results_list):
     """Converts a list of result dictionaries to a pandas DataFrame."""
     return pd.DataFrame(results_list)
+
+def compute_crossover_point(df_results, scratch_100_r2, metric='R2_mean'):
+    """
+    Interpolates to find the data fraction at which transfer learning matches 
+    the scratch model trained on 100% data.
+    """
+    df_transfer = df_results[df_results['model_type'] == 'Transfer'].sort_values('Data_Fraction')
+    
+    fractions = df_transfer['Data_Fraction'].values
+    scores = df_transfer[metric].values
+    
+    # Simple linear interpolation
+    crossover = np.interp(scratch_100_r2, scores, fractions)
+    return crossover
+
+def compute_data_savings(transfer_fraction, scratch_fraction):
+    """
+    Computes how much less data transfer needs vs. scratch.
+    """
+    if scratch_fraction == 0:
+        return 0
+    return (1 - (transfer_fraction / scratch_fraction)) * 100
+
+def statistical_significance_test(transfer_scores, scratch_scores):
+    """
+    Paired t-test or Wilcoxon signed-rank test comparing transfer vs. scratch.
+    """
+    try:
+        from scipy import stats
+        # Use Wilcoxon signed-rank test for paired samples (non-parametric)
+        stat, p_value = stats.wilcoxon(transfer_scores, scratch_scores)
+        return {'statistic': stat, 'p_value': p_value}
+    except ImportError:
+        print("scipy is required for statistical significance testing.")
+        return None

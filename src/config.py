@@ -1,5 +1,6 @@
 """
-Configuration settings for the NZEB ANN Climate-Aware Transfer Learning project.
+Configuration settings for the NZEB ANN project.
+Title: Transfer Learning for Cross-Climate Building Energy Prediction: Investigating Data Efficiency and Generalization Across Climate Zones
 """
 
 import os
@@ -28,14 +29,16 @@ CLIMATE_DISTANCE_MATRIX = {
     15: {2: 4, 4: 3, 15: 0}
 }
 
-# Bidirectional transfer scenarios (source -> target)
-TRANSFER_SCENARIOS = [
-    {"source": 2, "target": 4},   # Tempe -> Berkeley
-    {"source": 2, "target": 15},  # Tempe -> Cornell
+# --- Data Efficiency is the Primary Focus ---
+DATA_EFFICIENCY_IS_PRIMARY = True
+
+# PRIMARY experiment: Maximum climate distance
+PRIMARY_SCENARIO = {"source": 2, "target": 15}  # Tempe -> Cornell
+
+# SECONDARY experiments: Varying climate distance for secondary contribution
+SECONDARY_SCENARIOS = [
     {"source": 4, "target": 15},  # Berkeley -> Cornell
-    {"source": 4, "target": 2},   # Berkeley -> Tempe
-    {"source": 15, "target": 2},  # Cornell -> Tempe
-    {"source": 15, "target": 4},  # Cornell -> Berkeley
+    {"source": 2, "target": 4},   # Tempe -> Berkeley
 ]
 
 # --- Neural Network Hyperparameters ---
