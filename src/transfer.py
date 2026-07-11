@@ -65,18 +65,31 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         model = recompile_for_transfer(model, learning_rate=lr)
         
         # Train
-        ckpt_path = f"/kaggle/working/transfer_fold_{fold+1}.keras" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
+        ckpt_filename = f"transfer_fold_{fold+1}.keras"
+        ckpt_path_working = f"/kaggle/working/{ckpt_filename}" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
         
-        if ckpt_path and __import__('os').path.exists(ckpt_path):
-            print(f"Loading existing transfer checkpoint for fold {fold+1}...")
-            model = tf.keras.models.load_model(ckpt_path)
+        # Determine actual checkpoint path to load
+        load_path = None
+        if ckpt_path_working:
+            if __import__('os').path.exists(ckpt_path_working):
+                load_path = ckpt_path_working
+            else:
+                # Search in kaggle input (in case they attached previous run output)
+                for root, dirs, files in __import__('os').walk('/kaggle/input'):
+                    if ckpt_filename in files:
+                        load_path = __import__('os').path.join(root, ckpt_filename)
+                        break
+        
+        if load_path:
+            print(f"Loading existing transfer checkpoint {ckpt_filename} from {load_path}...")
+            model = tf.keras.models.load_model(load_path)
             train_time = 0.0
             epochs_run = 0
         else:
             model, history, train_time = train_model(
                 model, X_train_fold, y_train_fold, 
                 epochs=epochs, patience=patience,
-                checkpoint_path=ckpt_path
+                checkpoint_path=ckpt_path_working
             )
             epochs_run = len(history.history['loss'])
         
