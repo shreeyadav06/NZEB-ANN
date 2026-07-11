@@ -29,21 +29,36 @@ def compile_model(model, learning_rate=1e-5):
     model.compile(optimizer=optimizer, loss='mse')
     return model
 
-def train_model(model, X_train, y_train, epochs=100, patience=10, validation_split=0.2):
-    """Trains the model with early stopping."""
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+
+def train_model(model, X_train, y_train, epochs=100, patience=10, validation_split=0.2, checkpoint_path=None):
+    """Trains the model with early stopping and optional checkpointing."""
+    callbacks = []
+    
     early_stopping = EarlyStopping(
         monitor='val_loss', 
         patience=patience, 
         restore_best_weights=True
     )
+    callbacks.append(early_stopping)
+    
+    if checkpoint_path:
+        checkpoint = ModelCheckpoint(
+            filepath=checkpoint_path,
+            monitor='val_loss',
+            save_best_only=True,
+            save_weights_only=False,
+            verbose=1
+        )
+        callbacks.append(checkpoint)
     
     start_time = time.time()
     history = model.fit(
         X_train, y_train,
         epochs=epochs,
         validation_split=validation_split,
-        callbacks=[early_stopping],
-        verbose=0 # Silent training, let notebook handle progress
+        callbacks=callbacks,
+        verbose=2 # Show progress per epoch
     )
     training_time = time.time() - start_time
     
@@ -74,9 +89,12 @@ def train_with_kfold(X, y, n_folds=5, layers=[256, 128, 64, 32],
         model = compile_model(model, learning_rate=learning_rate)
         
         # Train
+        ckpt_path = f"/kaggle/working/baseline_fold_{fold+1}.keras" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
+        
         model, history, train_time = train_model(
             model, X_train_fold, y_train_fold, 
-            epochs=epochs, patience=patience
+            epochs=epochs, patience=patience,
+            checkpoint_path=ckpt_path
         )
         
         # Evaluate

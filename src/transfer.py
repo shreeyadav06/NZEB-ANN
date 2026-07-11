@@ -65,9 +65,12 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         model = recompile_for_transfer(model, learning_rate=lr)
         
         # Train
+        ckpt_path = f"/kaggle/working/transfer_fold_{fold+1}.keras" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
+        
         model, history, train_time = train_model(
             model, X_train_fold, y_train_fold, 
-            epochs=epochs, patience=patience
+            epochs=epochs, patience=patience,
+            checkpoint_path=ckpt_path
         )
         
         # Evaluate
