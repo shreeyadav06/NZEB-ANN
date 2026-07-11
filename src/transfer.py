@@ -44,7 +44,7 @@ def transfer_and_train(source_model_path, X_target, y_target, n_freeze=3,
 def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5, 
                         n_freeze=3, lr=1e-4, epochs=100, patience=10):
     """Performs K-Fold cross-validation for a transfer learning model."""
-    kf = KFold(n_splits=n_folds, shuffle=True)
+    kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
     fold_results = []
     
@@ -67,11 +67,18 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         # Train
         ckpt_path = f"/kaggle/working/transfer_fold_{fold+1}.keras" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
         
-        model, history, train_time = train_model(
-            model, X_train_fold, y_train_fold, 
-            epochs=epochs, patience=patience,
-            checkpoint_path=ckpt_path
-        )
+        if ckpt_path and __import__('os').path.exists(ckpt_path):
+            print(f"Loading existing transfer checkpoint for fold {fold+1}...")
+            model = tf.keras.models.load_model(ckpt_path)
+            train_time = 0.0
+            epochs_run = 0
+        else:
+            model, history, train_time = train_model(
+                model, X_train_fold, y_train_fold, 
+                epochs=epochs, patience=patience,
+                checkpoint_path=ckpt_path
+            )
+            epochs_run = len(history.history['loss'])
         
         # Evaluate
         y_pred = model.predict(X_test_fold, verbose=0).flatten()
@@ -79,7 +86,7 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         
         eval_metrics['fold'] = fold + 1
         eval_metrics['train_time'] = train_time
-        eval_metrics['epochs_run'] = len(history.history['loss'])
+        eval_metrics['epochs_run'] = epochs_run
         
         fold_results.append(eval_metrics)
         
