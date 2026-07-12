@@ -23,6 +23,13 @@ Instead of relying on idealized simulated data (like TRNSYS or EnergyPlus), this
 | **4** | UC Berkeley (Berkeley, CA) | **3C** | Marine |
 | **15** | Cornell University (Ithaca, NY) | **6A** | Cold-Humid |
 
+## Evaluation Metrics
+Because energy prediction is a *regression* task (predicting a continuous kWh value), standard classification accuracy does not mathematically apply. The models are rigorously evaluated using standard regression metrics:
+- **$R^2$ Score**: Proportion of variance explained (Primary metric).
+- **RMSE (Root Mean Squared Error)**: Measures the average magnitude of absolute error.
+- **MAPE (Mean Absolute Percentage Error)**: Measures the relative percentage error.
+- **Accuracy Proxy**: To satisfy general reporting requirements or reviewers asking for "accuracy", an intuitive proxy metric is calculated as `100 - (MAPE * 100)`.
+
 ## Methodology & Pipeline
 The workflow is structured into discrete experimental phases:
 - **Phase 1-3 (Data Integration):** Load and merge `train.csv`, `weather_train.csv`, and `building_metadata.csv` (filtered to electricity meters for the chosen sites).

@@ -48,3 +48,8 @@ Thumbs.db
 # implementation plan
 implementation_plan.md
 PROJECT_HANDOVER.md
+*.zip
+*.keras
+results/
+#v1 outputs (not included in repo since they were incomplete)
+results.zip

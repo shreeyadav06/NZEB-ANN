@@ -65,7 +65,7 @@ def train_model(model, X_train, y_train, epochs=100, patience=10, validation_spl
     return model, history, training_time
 
 def train_with_kfold(X, y, n_folds=5, layers=[256, 128, 64, 32], 
-                     learning_rate=1e-5, epochs=100, patience=10):
+                     learning_rate=1e-5, epochs=100, patience=10, site_name="unknown"):
     """Performs K-Fold cross-validation for a baseline model."""
     kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
@@ -89,7 +89,7 @@ def train_with_kfold(X, y, n_folds=5, layers=[256, 128, 64, 32],
         model = compile_model(model, learning_rate=learning_rate)
         
         # Train
-        ckpt_filename = f"baseline_fold_{fold+1}.keras"
+        ckpt_filename = f"{site_name}_baseline_fold_{fold+1}.keras"
         ckpt_path_working = f"/kaggle/working/{ckpt_filename}" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
         
         # Determine actual checkpoint path to load

@@ -42,7 +42,7 @@ def transfer_and_train(source_model_path, X_target, y_target, n_freeze=3,
     return model, history, train_time
 
 def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5, 
-                        n_freeze=3, lr=1e-4, epochs=100, patience=10):
+                        n_freeze=3, lr=1e-4, epochs=100, patience=10, site_name="unknown"):
     """Performs K-Fold cross-validation for a transfer learning model."""
     kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
@@ -65,7 +65,7 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         model = recompile_for_transfer(model, learning_rate=lr)
         
         # Train
-        ckpt_filename = f"transfer_fold_{fold+1}.keras"
+        ckpt_filename = f"{site_name}_transfer_fold_{fold+1}.keras"
         ckpt_path_working = f"/kaggle/working/{ckpt_filename}" if 'KAGGLE_KERNEL_RUN_TYPE' in __import__('os').environ else None
         
         # Determine actual checkpoint path to load
