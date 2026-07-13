@@ -47,10 +47,10 @@ ACTIVATION = 'relu'
 
 # Training Hyperparameters
 LEARNING_RATE = 1e-5
-EPOCHS = 100
+EPOCHS = 50
 PATIENCE = 10
 VALIDATION_SPLIT = 0.2
-BATCH_SIZE = 32
+BATCH_SIZE = 256
 
 # Transfer Learning Hyperparameters
 N_FREEZE_LAYERS = 3

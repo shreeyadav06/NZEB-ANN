@@ -29,7 +29,7 @@ def recompile_for_transfer(model, learning_rate=1e-4):
     return model
 
 def transfer_and_train(source_model_path, X_target, y_target, n_freeze=3, 
-                       lr=1e-4, epochs=100, patience=10, validation_split=0.2):
+                       lr=1e-4, epochs=50, batch_size=256, patience=10, validation_split=0.2):
     """Full transfer learning pipeline on target data."""
     model = load_source_model(source_model_path)
     model = freeze_layers(model, n_freeze=n_freeze)
@@ -37,12 +37,12 @@ def transfer_and_train(source_model_path, X_target, y_target, n_freeze=3,
     
     model, history, train_time = train_model(
         model, X_target, y_target,
-        epochs=epochs, patience=patience, validation_split=validation_split
+        epochs=epochs, batch_size=batch_size, patience=patience, validation_split=validation_split
     )
     return model, history, train_time
 
 def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5, 
-                        n_freeze=3, lr=1e-4, epochs=100, patience=10, site_name="unknown"):
+                        n_freeze=3, lr=1e-4, epochs=50, batch_size=256, patience=10, site_name="unknown"):
     """Performs K-Fold cross-validation for a transfer learning model."""
     kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
@@ -88,7 +88,7 @@ def transfer_with_kfold(source_model_path, X_target, y_target, n_folds=5,
         else:
             model, history, train_time = train_model(
                 model, X_train_fold, y_train_fold, 
-                epochs=epochs, patience=patience,
+                epochs=epochs, batch_size=batch_size, patience=patience,
                 checkpoint_path=ckpt_path_working
             )
             epochs_run = len(history.history['loss'])

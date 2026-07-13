@@ -31,7 +31,7 @@ def compile_model(model, learning_rate=1e-5):
 
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
-def train_model(model, X_train, y_train, epochs=100, patience=10, validation_split=0.2, checkpoint_path=None):
+def train_model(model, X_train, y_train, epochs=50, batch_size=256, patience=10, validation_split=0.2, checkpoint_path=None):
     """Trains the model with early stopping and optional checkpointing."""
     callbacks = []
     
@@ -56,6 +56,7 @@ def train_model(model, X_train, y_train, epochs=100, patience=10, validation_spl
     history = model.fit(
         X_train, y_train,
         epochs=epochs,
+        batch_size=batch_size,
         validation_split=validation_split,
         callbacks=callbacks,
         verbose=2 # Show progress per epoch
@@ -65,7 +66,7 @@ def train_model(model, X_train, y_train, epochs=100, patience=10, validation_spl
     return model, history, training_time
 
 def train_with_kfold(X, y, n_folds=5, layers=[256, 128, 64, 32], 
-                     learning_rate=1e-5, epochs=100, patience=10, site_name="unknown"):
+                     learning_rate=1e-5, epochs=50, batch_size=256, patience=10, site_name="unknown"):
     """Performs K-Fold cross-validation for a baseline model."""
     kf = KFold(n_splits=n_folds, shuffle=True, random_state=42)
     
@@ -112,7 +113,7 @@ def train_with_kfold(X, y, n_folds=5, layers=[256, 128, 64, 32],
         else:
             model, history, train_time = train_model(
                 model, X_train_fold, y_train_fold, 
-                epochs=epochs, patience=patience,
+                epochs=epochs, batch_size=batch_size, patience=patience,
                 checkpoint_path=ckpt_path_working
             )
             epochs_run = len(history.history['loss'])
