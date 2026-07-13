@@ -47,6 +47,7 @@ The workflow is structured into discrete experimental phases:
 
 ## Getting Started (Kaggle)
 This codebase is fully configured for Kaggle environments to bypass local hardware restrictions. 
+**Note:** The training parameters have been optimized (`epochs: 50`, `batch_size: 256`) to ensure the entire experiment suite runs well within Kaggle's 12-hour session limit on a T4x2 GPU.
 1. Compress the `src/` folder and `merged_ashrae.csv` into a `.zip` archive.
 2. In your Kaggle Notebook, click **Add Data** -> **Upload Data** -> **New Dataset**.
 3. Upload the `.zip` archive. Kaggle will automatically mount it to `/kaggle/input/`.
