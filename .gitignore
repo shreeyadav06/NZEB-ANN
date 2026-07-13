@@ -53,3 +53,6 @@ PROJECT_HANDOVER.md
 results/
 #v1 outputs (not included in repo since they were incomplete)
 results.zip
+
+# v3 output
+download.txt
