@@ -53,8 +53,6 @@ The workflow is structured into 5 discrete experimental phases:
 - `notebooks/NZEB_Climate_Transfer.ipynb` - The primary experimentation notebook (fully Kaggle compatible).
 - `src/` - Modularized Python codebase containing data loaders, feature engineering pipelines, model architectures, and training scripts.
 - `results_v4/` - Contains the final output CSVs and high-resolution figures proving the data efficiency hypothesis.
-- `ANALYSIS_REPORT.md` - Detailed analysis of the final experimental outputs.
-- `REVIEW2_PRESENTATION_PREP.md` - Preparation strategies and grading rubric alignment for presentations.
 
 ## Getting Started (Kaggle)
 This codebase is strictly optimized for Kaggle environments to bypass local hardware restrictions. 
