@@ -63,3 +63,13 @@ Training 100+ deep learning models requires massive parallel compute. The pipeli
 3. Upload the `.zip` archive. Kaggle will automatically mount it to `/kaggle/input/`.
 4. Import the provided `NZEB_Climate_Transfer.ipynb` notebook.
 5. Click **Save Version -> Save & Run All (Commit)**. The script will dynamically execute the entire experiment matrix in the background and output the results and figures into the Kaggle output directory.
+
+## Future Work & Next Steps
+
+Building upon the current findings regarding the "cold start" problem and the data efficiency crossover point, the following research directions are proposed:
+
+1. **Dynamic Fine-Tuning & Layer Unfreezing:** Investigate progressive unfreezing or dynamic learning rates during the fine-tuning phase to potentially eliminate the crossover point observed at 30% target data availability.
+2. **Advanced Time-Series Architectures:** Upgrade the core MLP architecture to sequential models like LSTMs or Time-Series Transformers to inherently capture chronological dependencies (e.g., prolonged heatwaves).
+3. **Domain Adversarial Neural Networks (DANNs):** Implement domain adaptation techniques to align the feature distributions of source and target climates, forcing the model to learn truly "climate-agnostic" physics features.
+4. **Zero-Shot Climate Transfer:** Push the boundaries of data efficiency by attempting Zero-Shot Transfer Learning—predicting energy usage in a brand new climate with 0% target training data.
+5. **Practical NZEB Control Integration:** Transition from passive prediction to active simulation by integrating the Transfer Learning model with building physics simulators (e.g., EnergyPlus) for real-time HVAC control optimization.
