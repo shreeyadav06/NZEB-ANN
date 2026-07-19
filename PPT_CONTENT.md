@@ -34,6 +34,7 @@
     *   **Environment:** Kaggle Notebooks (for headless cloud execution).
 *   **Hardware Requirements:**
     *   **Compute:** Kaggle Cloud GPUs (Dual NVIDIA T4 GPUs) for parallel processing and overcoming local memory constraints.
+    *   **Storage:** Sufficient cloud storage for handling the 800k+ rows ASHRAE dataset.
 
 ## Slide 7: Proposed Methodology (System Architecture)
 ```mermaid
