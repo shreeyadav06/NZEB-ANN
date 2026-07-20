@@ -98,13 +98,23 @@ graph LR
 
 ## Slide 12: References
 [1] "Evaluating ChatNetZero, an LLM-Chatbot to Demystify Climate Pledge." Available: https://aclanthology.org/2024.climatenlp-1.6/
+
 [2] "Multi-Agent RAG Chatbot Architecture for Decision Support in Net-Zero Emission Energy Systems." Available: https://ieeexplore.ieee.org/document/10540920
+
 [3] "EnergAI: A Large Language Model-Driven Generative Design Method for Early-Stage Building Energy Optimization." Available: https://www.mdpi.com/1996-1073/18/22/5921
+
 [4] "Artificial Intelligence and Digital Tools for Assisting Low-Carbon Architectural Design: Merging the Use of Machine Learning, Large Language Models, and Building Information Modeling for Life Cycle Assessment Tool Development." Available: https://www.mdpi.com/1996-1073/17/12/2997
+
 [5] "Artificial Intelligence in Net-Zero Carbon Emissions for Sustainable Building Projects: A Systematic Literature and Science Mapping Review." Available: https://www.mdpi.com/2075-5309/14/9/2752
+
 [6] "AI-Enhanced Sustainable Seismic Design for Net-Zero Energy Buildings Using Machine Learning and Parametric Modelling." Available: https://taapublications.com/tijasdr/article/view/609/664
+
 [7] "Data-Driven Framework for Energy Optimizing Net-Zero Energy Buildings (NZEB): A Functional Assessment of Energy Efficiency and Thermal Comfort." Available: https://www.sciencedirect.com/science/article/abs/pii/S0360544225024764?via%3Dihub
+
 [8] "Digital twin enabling net-zero energy building integrated grid digital transformation." Available: https://www.sciencedirect.com/science/article/pii/S2211467X26001148?via%3Dihub
+
 [9] "AI technologies towards achieving net-zero energy building: Potential framework, implementation factors, challenges and future directions." Available: https://www.sciencedirect.com/science/article/pii/S2213138825006356?via%3Dihub
+
 [10] "Towards net-zero energy buildings: Real-time monitoring, data-driven, and machine learning optimization." Available: https://www.semanticscholar.org/paper/Towards-net-zero-energy-buildings%3A-Real-time-and-Farahmandfar-Gharehghani/a3bad71fd62d5cb2aff2ba8c5fe75195d992f050
+
 [11] "Retrofitting Towards Net-Zero Energy Building Under Climate Change: An Approach Integrating Machine Learning and Multi-Objective Optimization." Available: https://www.semanticscholar.org/paper/Retrofitting-Towards-Net-Zero-Energy-Building-Under-Ibrahim-Biwole/7ef16f92bb876759abee5b17618d16ef6aab0fca
