@@ -36,7 +36,32 @@
     *   **Compute:** Kaggle Cloud GPUs (Dual NVIDIA T4 GPUs) for parallel processing and overcoming local memory constraints.
 
 ## Slide 7: Proposed Methodology (System Architecture)
-*   *Include a block diagram here if you have one.*
+```mermaid
+graph TD
+    subgraph Data Pipeline
+        A[Parse ASHRAE Dataset] --> B[Log Transformations]
+        B --> C[Sine/Cosine Cyclical Encoding]
+        C --> D[Standard Scaling]
+    end
+    
+    subgraph Phase 1: Baseline
+        D --> E[Train 4-layer ANN from Scratch<br/>Target Climate]
+        E --> F[5-Fold Cross Validation]
+    end
+    
+    subgraph Phase 2: Transfer Learning
+        D --> G[Train ANN on Source Climate]
+        G --> H[Freeze Layers 1-3]
+        H --> I[Transfer to Target Climate]
+        I --> J[Fine-tune Last Layer]
+    end
+    
+    subgraph Phase 3: Data Efficiency Loop
+        F -.-> K{Compare Performance}
+        J -.-> K
+        K --> L[Vary Target Data Fractions<br/>5% to 100%]
+    end
+```
 *   **Data Pipeline:** Parsing ASHRAE dataset -> Log Transformations for skewed data -> Sine/Cosine cyclical encoding for temporal features -> Standard Scaling.
 *   **Phase 1 (Baseline):** Train a 4-hidden-layer ANN `[256, 128, 64, 32]` from scratch on the target climate (5-Fold Cross Validation).
 *   **Phase 2 (Transfer):** Train ANN on a source climate (e.g., Tempe). Freeze layers 1 to 3. Transfer to the target climate (e.g., Cornell) and fine-tune only the last layer.
