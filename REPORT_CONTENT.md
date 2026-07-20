@@ -107,6 +107,33 @@ To ensure neural network stability and rapid convergence, rigorous preprocessing
 5. **Standard Scaling:** All numerical inputs were normalized to a mean of 0 and a standard deviation of 1.
 
 ### 3.3 FLOW OF THE MODEL
+
+**Figure 1: Flowchart of the Data Pipeline and Processing**
+```mermaid
+graph LR
+    subgraph Pipeline [1. Data Pipeline]
+        direction TB
+        A[Parse ASHRAE Dataset] --> B[Log Transformations]
+        B --> C[Sine/Cosine Cyclical Encoding]
+        C --> D[Standard Scaling]
+    end
+    
+    subgraph Phase2 [2b. Phase 2: Transfer Learning]
+        direction TB
+        G[Train on Source Climate] --> H[Freeze Layers 1-3]
+        H --> I[Transfer to Target Climate]
+        I --> J[Fine-tune Last Layer]
+    end
+    
+    subgraph Phase1 [2a. Phase 1: Baseline]
+        direction TB
+        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
+    end
+    
+    Pipeline --> Phase1
+    Pipeline --> Phase2
+```
+
 The core architecture utilized a deep 4-hidden-layer Artificial Neural Network structured as `[256, 128, 64, 32]` neurons.
 - **Activation Functions:** ReLU (Rectified Linear Unit) for hidden layers to prevent the vanishing gradient problem.
 - **Regularization:** Dropout layers (rate = 0.2) were inserted to combat overfitting, especially critical during the data-scarce runs.
@@ -120,14 +147,14 @@ To simulate the "cold start" problem, the training pipeline was wrapped in a pro
 ## CHAPTER 4: RESULTS
 
 ### 4.1 EXPERIMENTAL SETUP
-All experiments were executed on Kaggle Cloud GPUs. The network was trained using a highly optimized batch size of 1024 to accelerate matrix operations. To prevent overfitting, an `EarlyStopping` callback was implemented with a patience of 10 epochs monitoring the validation loss. Additionally, a `ReduceLROnPlateau` callback was utilized to decay the learning rate by a factor of 0.5 if the loss plateaued for 3 consecutive epochs.
+All experiments were executed on Kaggle Cloud GPUs. The network was trained using a highly optimized batch size of 256 to accelerate matrix operations. To prevent overfitting, an `EarlyStopping` callback was implemented with a patience of 10 epochs monitoring the validation loss. Additionally, a `ReduceLROnPlateau` callback was utilized to decay the learning rate by a factor of 0.5 if the loss plateaued for 3 consecutive epochs.
 
 **Table 4.1: Simulation Parameters and Hyperparameters**
 
 | Parameter | Value |
 | :--- | :--- |
 | **Compute Environment** | Kaggle Cloud GPUs (Tesla P100 / T4) |
-| **Batch Size** | 1024 |
+| **Batch Size** | 256 |
 | **Weight Initialization** | He Normal |
 | **Optimizer** | Adam |
 | **Initial Learning Rate** | 0.001 |
