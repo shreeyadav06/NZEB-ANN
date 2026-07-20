@@ -73,7 +73,7 @@ graph LR
 *   **Phase 2 (Transfer):** Train ANN on a source climate (e.g., Tempe). Freeze layers 1 to 3. Transfer to the target climate (e.g., Cornell) and fine-tune only the last layer.
 *   **Phase 3 (Data Efficiency Loop):** Restrict target training data to fractions (5%, 10%, 20%, 30%, 50%, 100%) and compare Scratch vs. Transfer performance.
 
-## Slide 8: Module-wise Implementation (Since Review 1)
+## Slide 8: Implementation Work Completed Since Review-01
 *   **Module 1: Cloud Orchestration:** Successfully migrated the entire training pipeline to Kaggle Cloud GPUs, optimizing batch sizes (256) to handle 800k+ rows per site without out-of-memory errors.
 *   **Module 2: The Data Efficiency Loop:** Implemented the core experiment suggested by the mentor—iteratively training models on restricted data fractions to simulate the lifespan of a new building.
 *   **Module 3: Statistical Validation:** Ran all Transfer and Scratch pipelines across 3 different random seeds (42, 123, 456) to ensure the findings were statistically significant and not flukes.
