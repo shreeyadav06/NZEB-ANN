@@ -85,9 +85,13 @@ graph LR
 *   **Key Result:** The crossover point was successfully identified precisely at 30% data availability, where the Scratch model finally catches up to the frozen Transfer model.
 
 ## Slide 10: Conclusion
-*   The project successfully proves that Transfer Learning is a highly effective, computationally efficient solution for the NZEB "cold start" problem. 
-*   By utilizing pre-trained weights from data-rich climates, new buildings can achieve highly accurate energy predictions (0.99 R²) with only a tiny fraction (5%) of required historical data.
+*   **Solving the Cold Start Problem:** The project successfully proves that Transfer Learning is a highly effective, computationally efficient solution for newly constructed NZEBs that lack historical operational data.
+*   **Data Efficiency Breakthrough:** By utilizing pre-trained weights from data-rich climates, new buildings can achieve highly accurate energy predictions (0.99 R²) with only a tiny fraction (5%) of required historical data, bypassing years of data collection.
+*   **Resource Optimization:** The frozen-layer architecture significantly reduces training time and computational overhead compared to training massive models from scratch.
+*   **Real-world Applicability:** Identifying the exact crossover point (30% data availability) provides a concrete operational threshold for facility managers to know exactly when to switch from a transferred model to a custom scratch model.
 
 ## Slide 11: Future Work
-*   Extend the Transfer Learning architecture to utilize Recurrent Neural Networks (LSTMs or GRUs) to capture longer-term sequential dependencies.
-*   Test transferability across different building types (e.g., transferring from a commercial office building to an educational facility) rather than just across climates.
+*   **Sequential & Temporal Modeling:** Extend the Transfer Learning architecture to utilize Recurrent Neural Networks (LSTMs or GRUs) and Transformers to better capture longer-term sequential dependencies and complex weather patterns.
+*   **Cross-Domain Transferability:** Test model transferability across entirely different building types (e.g., transferring knowledge from a commercial office building to a residential complex or educational facility) rather than just across different climate zones.
+*   **Real-Time API Integration:** Deploy the best-performing models via a live REST API to ingest real-time IoT sensor data from NZEBs for continuous, on-the-fly energy consumption optimization.
+*   **Multi-Task Learning:** Expand the framework to predict secondary metrics concurrently with electricity, such as chilled water consumption, steam usage, and peak-hour HVAC load requirements.
