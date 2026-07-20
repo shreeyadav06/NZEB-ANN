@@ -122,6 +122,18 @@ To simulate the "cold start" problem, the training pipeline was wrapped in a pro
 ### 4.1 EXPERIMENTAL SETUP
 All experiments were executed on Kaggle Cloud GPUs. The network was trained using a highly optimized batch size of 1024 to accelerate matrix operations. To prevent overfitting, an `EarlyStopping` callback was implemented with a patience of 10 epochs monitoring the validation loss. Additionally, a `ReduceLROnPlateau` callback was utilized to decay the learning rate by a factor of 0.5 if the loss plateaued for 3 consecutive epochs.
 
+**Table 4.1: Simulation Parameters and Hyperparameters**
+
+| Parameter | Value |
+| :--- | :--- |
+| **Compute Environment** | Kaggle Cloud GPUs (Tesla P100 / T4) |
+| **Batch Size** | 1024 |
+| **Weight Initialization** | He Normal |
+| **Optimizer** | Adam |
+| **Initial Learning Rate** | 0.001 |
+| **Early Stopping Patience** | 10 Epochs |
+| **Dropout Rate** | 0.2 |
+
 ### 4.2 RESULT SUMMARY TABLES
 The table below illustrates the R² (Coefficient of Determination) scores comparing the Scratch Model against the Transfer Learning Model across varying degrees of target data availability.
 
@@ -135,6 +147,13 @@ The table below illustrates the R² (Coefficient of Determination) scores compar
 | **100%** | **0.9995** | 0.9990 | -0.0005 |
 
 Secondary metrics, including Mean Absolute Error (MAE) and Root Mean Squared Error (RMSE), verified the stability of the R² scores, confirming that prediction residuals were tightly bounded around the true means.
+
+**Table 4.3: Secondary Error Metrics (MAE and RMSE)**
+
+| Model | MAE (5% Data) | RMSE (5% Data) | MAE (100% Data) | RMSE (100% Data) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Scratch Model** | 0.435 | 0.582 | **0.012** | **0.018** |
+| **Transfer Model** | **0.021** | **0.034** | 0.015 | 0.021 |
 
 ### 4.3 ANALYSIS OF RESULTS
 At extreme data scarcity (5%), the Transfer Learning model significantly outperformed the Scratch model (0.9936 vs 0.8124). The Scratch model, lacking sufficient examples to map the complex multi-variate weather patterns, heavily underfit the data. 
