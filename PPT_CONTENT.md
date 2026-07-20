@@ -45,11 +45,14 @@ graph LR
         C --> D[Standard Scaling]
     end
     
-    subgraph Training [2. Model Training]
+    subgraph Phase1 [2a. Phase 1: Baseline]
         direction TB
-        E[Phase 1: Train ANN from Scratch] --> F[5-Fold Cross Validation]
-        
-        G[Phase 2: Train on Source Climate] --> H[Freeze Layers 1-3]
+        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
+    end
+    
+    subgraph Phase2 [2b. Phase 2: Transfer Learning]
+        direction TB
+        G[Train on Source Climate] --> H[Freeze Layers 1-3]
         H --> I[Transfer to Target Climate]
         I --> J[Fine-tune Last Layer]
     end
