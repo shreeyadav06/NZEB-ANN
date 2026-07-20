@@ -42,6 +42,33 @@ The models are rigorously evaluated using standard regression metrics:
 - **MAPE (Mean Absolute Percentage Error)**: Measures the relative percentage error.
 
 ## Experimental Methodology
+
+### System Architecture Flowchart
+```mermaid
+graph LR
+    subgraph Pipeline [1. Data Pipeline]
+        direction TB
+        A[Parse ASHRAE Dataset] --> B[Log Transformations]
+        B --> C[Sine/Cosine Cyclical Encoding]
+        C --> D[Standard Scaling]
+    end
+    
+    subgraph Phase2 [2b. Phase 2: Transfer Learning]
+        direction TB
+        G[Train on Source Climate] --> H[Freeze Layers 1-3]
+        H --> I[Transfer to Target Climate]
+        I --> J[Fine-tune Last Layer]
+    end
+    
+    subgraph Phase1 [2a. Phase 1: Baseline]
+        direction TB
+        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
+    end
+    
+    Pipeline --> Phase1
+    Pipeline --> Phase2
+```
+
 The workflow is structured into 5 discrete experimental phases:
 1. **Phase 1 (Data Integration):** Load and merge ASHRAE datasets, filtering exclusively for electricity meters across our target climates.
 2. **Phase 2 (Feature Engineering):** Extract temporal cyclic features (Sine/Cosine transformations), apply logarithmic scaling to energy targets (`np.log1p`), and standardize numerical variables.
