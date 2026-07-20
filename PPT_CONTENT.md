@@ -95,3 +95,10 @@ graph LR
 *   **Cross-Domain Transferability:** Test model transferability across entirely different building types (e.g., transferring knowledge from a commercial office building to a residential complex or educational facility) rather than just across different climate zones.
 *   **Real-Time API Integration:** Deploy the best-performing models via a live REST API to ingest real-time IoT sensor data from NZEBs for continuous, on-the-fly energy consumption optimization.
 *   **Multi-Task Learning:** Expand the framework to predict secondary metrics concurrently with electricity, such as chilled water consumption, steam usage, and peak-hour HVAC load requirements.
+
+## Slide 12: References
+*   *Evaluating ChatNetZero, an LLM-Chatbot to Demystify Climate Pledge* - [Link](https://aclanthology.org/2024.climatenlp-1.6/)
+*   *Multi-Agent RAG Chatbot Architecture for Decision Support in Net-Zero Emission Energy Systems* - [Link](https://ieeexplore.ieee.org/document/10540920)
+*   *EnergAI: A Large Language Model-Driven Generative Design Method for Early-Stage Building Energy Optimization* - [Link](https://www.mdpi.com/1996-1073/18/22/5921)
+*   *Artificial Intelligence and Digital Tools for Assisting Low-Carbon Architectural Design: Merging the Use of Machine Learning, Large Language Models, and Building Information Modeling for Life Cycle Assessment Tool Development* - [Link](https://www.mdpi.com/1996-1073/17/12/2997)
+*   *Artificial Intelligence in Net-Zero Carbon Emissions for Sustainable Building Projects: A Systematic Literature and Science Mapping Review* - [Link](https://www.mdpi.com/2075-5309/14/9/2752)
