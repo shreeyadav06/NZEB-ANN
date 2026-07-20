@@ -79,9 +79,9 @@ graph LR
 *   **Module 3: Statistical Validation:** Ran all Transfer and Scratch pipelines across 3 different random seeds (42, 123, 456) to ensure the findings were statistically significant and not flukes.
 
 ## Slide 9: Experimental Results / Output
-*   *Place your "Primary Data Efficiency" graph here.*
+*   ![Primary Data Efficiency](results_v4/figures/Primary_Data_Efficiency.png)
 *   **Key Result:** At extreme scarcity (5% data), Transfer Learning achieved an R² of 0.9936 compared to Scratch's 0.8124 (a massive +0.1812 boost).
-*   *Place your "Convergence Plot" here.*
+*   ![Convergence Plot](results_v4/figures/Convergence_Plots.png)
 *   **Key Result:** The crossover point was successfully identified precisely at 30% data availability, where the Scratch model finally catches up to the frozen Transfer model.
 
 ## Slide 10: Conclusion
