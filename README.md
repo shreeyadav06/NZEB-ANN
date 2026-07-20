@@ -5,7 +5,7 @@
 ## Overview
 This repository contains the implementation for the research paper exploring cross-climate building energy prediction. The core objective is to investigate whether transfer learning can significantly reduce the amount of target-climate training data required when predicting building energy consumption across different climate zones. 
 
-While existing Net-Zero Energy Building (NZEB) models are often "climate-locked" (performing poorly outside their original training climate), this project leverages **Climate-Aware Transfer Learning** to adapt models across vastly different climates (e.g., from the hot-arid climate of Tempe, AZ to the cold-humid environment of Ithaca, NY) using a fraction of the traditional data requirements.
+While existing Net-Zero Energy Building (NZEB) models are often "climate-locked" (performing poorly outside their original training climate), this project leverages **Climate-Aware Transfer Learning** to adapt models across vastly different climates (e.g., from the hot-arid climate of Tempe, AZ to the cold-humid environment of Bergen, Norway) using a fraction of the traditional data requirements.
 
 ## Key Results & Findings
 
