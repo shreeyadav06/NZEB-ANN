@@ -45,11 +45,6 @@ graph LR
         C --> D[Standard Scaling]
     end
     
-    subgraph Phase1 [2a. Phase 1: Baseline]
-        direction TB
-        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
-    end
-    
     subgraph Phase2 [2b. Phase 2: Transfer Learning]
         direction TB
         G[Train on Source Climate] --> H[Freeze Layers 1-3]
@@ -57,15 +52,20 @@ graph LR
         I --> J[Fine-tune Last Layer]
     end
     
+    subgraph Phase1 [2a. Phase 1: Baseline]
+        direction TB
+        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
+    end
+    
     subgraph Evaluation [3. Data Efficiency Loop]
         direction TB
         K{Compare Performance} --> L[Vary Target Data Fractions<br/>5% to 100%]
     end
 
-    D --> E
     D --> G
-    F --> K
+    D --> E
     J --> K
+    F --> K
 ```
 *   **Data Pipeline:** Parsing ASHRAE dataset -> Log Transformations for skewed data -> Sine/Cosine cyclical encoding for temporal features -> Standard Scaling.
 *   **Phase 1 (Baseline):** Train a 4-hidden-layer ANN `[256, 128, 64, 32]` from scratch on the target climate (5-Fold Cross Validation).
