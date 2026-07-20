@@ -37,32 +37,32 @@
 
 ## Slide 7: Proposed Methodology (System Architecture)
 ```mermaid
-graph TD
-    subgraph Pipeline [Data Pipeline]
+graph LR
+    subgraph Pipeline [1. Data Pipeline]
+        direction TB
         A[Parse ASHRAE Dataset] --> B[Log Transformations]
         B --> C[Sine/Cosine Cyclical Encoding]
         C --> D[Standard Scaling]
     end
     
-    D -->|Parallel Track 1| E
-    D -->|Parallel Track 2| G
-
-    subgraph Phase1 [Phase 1: Baseline]
-        E[Train 4-layer ANN from Scratch<br/>Target Climate] --> F[5-Fold Cross Validation]
-    end
-    
-    subgraph Phase2 [Phase 2: Transfer Learning]
-        G[Train ANN on Source Climate] --> H[Freeze Layers 1-3]
+    subgraph Training [2. Model Training]
+        direction TB
+        E[Phase 1: Train ANN from Scratch] --> F[5-Fold Cross Validation]
+        
+        G[Phase 2: Train on Source Climate] --> H[Freeze Layers 1-3]
         H --> I[Transfer to Target Climate]
         I --> J[Fine-tune Last Layer]
     end
     
-    F -.-> K
-    J -.-> K
-    
-    subgraph Phase3 [Phase 3: Data Efficiency Loop]
+    subgraph Evaluation [3. Data Efficiency Loop]
+        direction TB
         K{Compare Performance} --> L[Vary Target Data Fractions<br/>5% to 100%]
     end
+
+    D --> E
+    D --> G
+    F --> K
+    J --> K
 ```
 *   **Data Pipeline:** Parsing ASHRAE dataset -> Log Transformations for skewed data -> Sine/Cosine cyclical encoding for temporal features -> Standard Scaling.
 *   **Phase 1 (Baseline):** Train a 4-hidden-layer ANN `[256, 128, 64, 32]` from scratch on the target climate (5-Fold Cross Validation).
