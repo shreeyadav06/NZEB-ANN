@@ -42,10 +42,6 @@ The models are rigorously evaluated using standard regression metrics:
 - **RMSE (Root Mean Squared Error)**: Measures the average magnitude of absolute error.
 - **MAPE (Mean Absolute Percentage Error)**: Measures the relative percentage error.
 
-## Experimental Methodology
-
-### Model Architectural Overview
-![Model Architectural Overview](arch_perfect.svg)
 
 ### System Architecture Flowchart
 ```mermaid
