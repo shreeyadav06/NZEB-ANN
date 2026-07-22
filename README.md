@@ -43,6 +43,9 @@ The models are rigorously evaluated using standard regression metrics:
 
 ## Experimental Methodology
 
+### Model Architectural Overview
+![Model Architectural Overview](arch_perfect.svg)
+
 ### System Architecture Flowchart
 ```mermaid
 graph LR
