@@ -24,6 +24,7 @@ Our primary experiment restricted target training data to 5%, 10%, 20%, 30%, 50%
 **Key Finding:** Transfer Learning completely dominates in data-scarce environments (5% to 20%), essentially solving the "cold start" problem for newly constructed buildings. However, as data availability reaches ~30%, a **crossover point** occurs where training a model from scratch overtakes the transfer model due to the transfer model's frozen generalized layers.
 
 ![Primary Data Efficiency](results_v4/figures/Primary_Data_Efficiency.png)
+![Convergence Plots](results_v4/figures/Convergence_Plots.png)
 ![Transferability Heatmap](results_v4/figures/Transferability_Heatmap.png)
 
 ## Dataset & Selected Domains
