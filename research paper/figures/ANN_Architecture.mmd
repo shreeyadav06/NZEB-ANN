@@ -18,9 +18,9 @@ flowchart TB
 
     PRED["Predicted Energy: expm1(y) Inversion (kWh)"]
 
-    IN --> L1
-    L3 --> L4
-    OUT --> PRED
+    IN --> FROZEN
+    FROZEN --> TRAIN
+    TRAIN --> PRED
 
     classDef frozen fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#174EA6,font-weight:bold;
     classDef tuned fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#0D652D,font-weight:bold;
