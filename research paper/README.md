@@ -11,9 +11,19 @@
 
 ---
 
+## Paper Editions
+- **6-Page Strict IEEE Conference Edition** (Recommended for submissions with a 6-page limit):
+  - `paper_6page.tex` — Optimized LaTeX source with calibrated float margins, consolidated equations, and balanced two-column bibliography.
+  - `paper_6page.pdf` — Pre-compiled camera-ready 6-page PDF with zero spillover.
+- **7-Page Full Edition** (Original extended manuscript):
+  - `paper.tex` — Unrestricted full LaTeX source.
+  - `paper.pdf` — Pre-compiled 7-page PDF.
+
+---
+
 ## Directory Contents
-- `paper.tex` — Full LaTeX source code conforming to the IEEE Conference format.
-- `paper.pdf` — Pre-compiled camera-ready PDF with clickable reference hyperlinks.
+- `paper_6page.tex` & `paper_6page.pdf` — 6-page IEEE conference submission copy.
+- `paper.tex` & `paper.pdf` — Extended 7-page edition.
 - `IEEEtran.cls` — Official IEEE LaTeX document class.
 - `IEEEtran.bst` — IEEE bibliography style definition.
 - `cite.sty` — IEEE citation ordering and grouping package.
@@ -28,9 +38,14 @@
 ---
 
 ## Compilation Instructions
-To recompile the document locally using `pdflatex`:
+To recompile either document locally using `pdflatex`:
 
 ```bash
+# 6-page conference edition
+pdflatex -interaction=nonstopmode paper_6page.tex
+pdflatex -interaction=nonstopmode paper_6page.tex
+
+# 7-page extended edition
 pdflatex -interaction=nonstopmode paper.tex
 pdflatex -interaction=nonstopmode paper.tex
 ```
