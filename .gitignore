@@ -63,3 +63,8 @@ REPORT_CONTENT.md
 REVIEW2_PRESENTATION_PREP.md
 ANALYSIS_REPORT.md
 FUTURE_PLANS.md
+
+# Agent & Presentation files
+.agent/
+NZEB Review2 PPT.pptx
+*.pptx
