@@ -3,8 +3,9 @@ technical_report.pdf
 tech_report_page_*.png
 *.html
 *.htm
-research\ paper/figures/test_*.png
-build_diagrams_with_skill.py
+build_diagrams_*.py
+research paper/figures/test_*.png
+research paper/preview_v2/
 
 # Skills and Agent tools
 .agents/
@@ -118,4 +119,6 @@ research paper/*.out
 research paper/*.toc
 research paper/*.synctex.gz
 research paper/**/*.html
+research paper/preview_v2/
+research paper/preview_v2/**
 
