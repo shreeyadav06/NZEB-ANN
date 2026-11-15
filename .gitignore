@@ -1,3 +1,17 @@
+# Reference materials
+technical_report.pdf
+tech_report_page_*.png
+*.html
+*.htm
+build_diagrams_*.py
+generate_academic_figures.py
+research paper/figures/test_*.png
+research paper/preview_v2/
+
+# Skills and Agent tools
+.agents/
+skills-lock.json
+
 # Python
 __pycache__/
 *.py[cod]
@@ -24,7 +38,7 @@ var/
 data/
 models/
 results/
-figures/
+/figures/
 *.csv
 *.keras
 *.h5
@@ -68,3 +82,46 @@ FUTURE_PLANS.md
 .agent/
 NZEB Review2 PPT.pptx
 *.pptx
+IEEE-conference-template-062824.tex
+
+# Local LaTeX Compiler & Build Artifacts (Keep local, don't push to GitHub)
+latex_tools/
+.latex-cache/
+_preview/
+compile_paper.py
+generate_mermaid_figures.py
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Root-level duplicate LaTeX files (all packaged inside 'research paper/')
+/IEEE-conference-template-062824.pdf
+/IEEEtran.bst
+/IEEEtran.cls
+/cite.sty
+/paper.pdf
+/paper.tex
+/MERMAID_DIAGRAMS.md
+/results_v4/figures/*.mmd
+/results_v4/figures/ANN_Architecture.png
+/results_v4/figures/System_Pipeline.png
+
+# Whitelist research paper artifacts
+!research paper/
+!research paper/**
+research paper/*.aux
+research paper/*.log
+research paper/*.out
+research paper/*.toc
+research paper/*.synctex.gz
+research paper/**/*.html
+research paper/preview_v2/
+research paper/preview_v2/**
+figures_v2
+overleaf_package/
+overleaf_upload.zip
