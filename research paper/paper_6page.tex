@@ -200,7 +200,7 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}, \quad \text{R
 \resizebox{0.95\columnwidth}{!}{%
 \begin{tabular}{ccccc}
 \toprule
-\textbf{Target} & \textbf{Scratch ^2$} & \textbf{Transfer ^2$} & \textbf{Transfer Gain} & \textbf{Transfer RMSE} \\
+\textbf{Target} & \textbf{Scratch $R^2$} & \textbf{Transfer $R^2$} & \textbf{Transfer Gain} & \textbf{Transfer RMSE} \\
 \textbf{Data}   & \textbf{(Mean)}       & \textbf{(Mean)}        & \textbf{($\Delta R^2$)} & \textbf{(kWh)} \\
 \midrule
 5\%   & 0.8124 & 0.9936 & \textbf{+0.1812} & 14.18 \\
@@ -270,10 +270,14 @@ These findings provide three guidelines for NZEB operations:
 
 
 
-\clearpage
 \section{Conclusion}
 This study evaluated cross-climate transfer learning for building energy prediction using operational records from ASHRAE GEPIII and BDGP2 across three climate zones (2B, 3C, 6A). Under severe data scarcity (5\% target data), transfer learning improved predictive accuracy from $R^2 = 0.8124$ to $0.9936$, reducing RMSE from 77.19~kWh to 14.18~kWh. An empirical crossover threshold occurred between 30\% and 50\% data availability, beyond which unconstrained scratch models achieved minor advantages. Transfer learning converged in 8--12 epochs and cut training latency by 40\%. Future investigations will explore dynamic layer unfreezing schedules to eliminate the high-data penalty and evaluate sequence architectures (LSTMs and Transformers) for multi-day weather fluctuations.
 
+
+Future research will investigate: (1) dynamic unfreezing schedules that gradually unfreeze lower layers as target data volume increases to eliminate the crossover penalty at 100\% data; (2) sequential deep architectures such as Temporal Convolutional Networks and Time-Series Transformers to model multi-day extreme weather anomalies; (3) domain-adversarial loss formulations to learn climate-invariant representations across diverse building typologies; and (4) integration with building energy simulators for real-time Model Predictive Control (MPC) of HVAC systems in operational Net-Zero facilities.
+
+
+\clearpage
 \begin{thebibliography}{00}
 \setlength{\itemsep}{1.2pt plus 0.5pt minus 0.5pt}
 \setlength{\parskip}{0pt}
@@ -285,10 +289,10 @@ This study evaluated cross-climate transfer learning for building energy predict
 \bibitem{b5} G. Pinto, Z. Wang, and A. Capozzoli, ``Transfer learning for building energy systems: A review,'' \textit{Adv. Appl. Energy}, vol. 5, p. 100084, 2022.
 \bibitem{b6} M. A. Alghassab, ``Data-driven framework for energy optimizing net-zero energy buildings (NZEB),'' \textit{Energy}, vol. 306, p. 132470, 2024.
 \bibitem{b7} M. Ibrahim et al., ``Energy performance optimization of net-zero energy buildings under climate change scenarios,'' \textit{Energy Build.}, vol. 312, p. 114150, 2024.
-\newpage
 \bibitem{b8} A. Farahmandfar, A. Gharehghani, and J. Ahbabi Saray, ``Pathways toward net-zero energy buildings: Real-time monitoring and simulations,'' \textit{Energy Convers. Manage.}, vol. 301, p. 118021, 2025.
 \bibitem{b9} K. Amasyali and N. M. El-Gohary, ``A review of data-driven building energy consumption prediction studies,'' \textit{Renew. Sustain. Energy Rev.}, vol. 81, pp. 1192--1205, 2018.
 \bibitem{b10} Z. Wang and R. S. Srinivasan, ``A review of artificial intelligence based building energy use prediction,'' \textit{Renew. Sustain. Energy Rev.}, vol. 75, pp. 796--808, 2017.
+\newpage
 \bibitem{b11} J. Runge and R. Zmeureanu, ``Forecasting energy use in buildings using artificial neural networks: A review,'' \textit{Energies}, vol. 12, no. 17, p. 3254, 2019.
 \bibitem{b12} Y. Ding, Z. Wang, and T. Hong, ``Cross-building energy forecasting using deep domain adaptation,'' \textit{IEEE Trans. Smart Grid}, vol. 12, no. 5, pp. 4125--4136, 2021.
 \bibitem{b13} K. U. Ahn and S. Park, ``Deep transfer learning for building energy consumption forecasting under data scarcity,'' \textit{Energy}, vol. 235, p. 121344, 2021.
