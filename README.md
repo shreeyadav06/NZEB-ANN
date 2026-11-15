@@ -43,31 +43,19 @@ The models are rigorously evaluated using standard regression metrics:
 - **MAPE (Mean Absolute Percentage Error)**: Measures the relative percentage error.
 
 
-### System Architecture Flowchart
-```mermaid
-graph LR
-    subgraph Pipeline [1. Data Pipeline]
-        direction TB
-        A[Parse ASHRAE Dataset] --> B[Log Transformations]
-        B --> C[Sine/Cosine Cyclical Encoding]
-        C --> D[Standard Scaling]
-    end
-    
-    subgraph Phase2 [2b. Phase 2: Transfer Learning]
-        direction TB
-        G[Train on Source Climate] --> H[Freeze Layers 1-3]
-        H --> I[Transfer to Target Climate]
-        I --> J[Fine-tune Last Layer]
-    end
-    
-    subgraph Phase1 [2a. Phase 1: Baseline]
-        direction TB
-        E[Train ANN from Scratch] --> F[5-Fold Cross Validation]
-    end
-    
-    Pipeline --> Phase1
-    Pipeline --> Phase2
-```
+### System Architecture & Methodology Pipeline
+The cross-climate transfer learning framework operates across four distinct phases: Data Ingestion & Integration, Feature Engineering, Source Pre-Training (Zone 2B), and Climate Transfer & Adaptation (Zone 6A).
+
+<p align="center">
+  <img src="research%20paper/figures/System_Pipeline.png" alt="System Pipeline" width="100%" />
+</p>
+
+### Deep Neural Network Architecture & Parameter-Freezing Scheme
+The deep feed-forward ANN contains 4 hidden dense layers `[256 -> 128 -> 64 -> 32 -> 1]`. For cross-climate transfer learning, layers 1–3 (43,584 parameters; 95.4% of total weights) are frozen to preserve thermodynamic invariants, while Layer 4 and the Linear output head are fine-tuned on the target climate.
+
+<p align="center">
+  <img src="research%20paper/figures/ANN_Architecture.png" alt="ANN Architecture" width="450" />
+</p>
 
 The workflow is structured into 5 discrete experimental phases:
 1. **Phase 1 (Data Integration):** Load and merge ASHRAE datasets, filtering exclusively for electricity meters across our target climates.

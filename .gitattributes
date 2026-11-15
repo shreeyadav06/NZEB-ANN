@@ -1,0 +1,8 @@
+# GitHub Linguist overrides
+# Exclude LaTeX manuscripts, conference templates, styles, and diagrams from repo language stats
+"research paper/**" linguist-detectable=false
+*.cls linguist-vendored
+*.bst linguist-vendored
+*.sty linguist-vendored
+*.tex linguist-detectable=false
+*.mmd linguist-detectable=false

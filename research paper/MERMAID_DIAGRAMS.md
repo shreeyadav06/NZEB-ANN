@@ -39,9 +39,16 @@ flowchart LR
 
     S1 ==> S2 ==> S3 ==> S4
 
-    classDef group fill:#F8F9FA,stroke:#1A73E8,stroke-width:2px,font-weight:bold;
+    classDef s1 fill:#F8F9FA,stroke:#5F6368,stroke-width:2px,color:#202124;
+    classDef s2 fill:#FEF7E0,stroke:#B06000,stroke-width:2px,color:#7A4100;
+    classDef s3 fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#174EA6;
+    classDef s4 fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#0D652D;
     classDef default fill:#FFFFFF,stroke:#5F6368,stroke-width:1.2px;
-    class S1,S2,S3,S4 group;
+
+    class S1 s1;
+    class S2 s2;
+    class S3 s3;
+    class S4 s4;
 ```
 
 ---
@@ -69,9 +76,9 @@ flowchart TB
 
     PRED["Predicted Energy: expm1(y) Inversion (kWh)"]
 
-    IN --> L1
-    L3 --> L4
-    OUT --> PRED
+    IN --> FROZEN
+    FROZEN --> TRAIN
+    TRAIN --> PRED
 
     classDef frozen fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#174EA6,font-weight:bold;
     classDef tuned fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#0D652D,font-weight:bold;
@@ -80,4 +87,3 @@ flowchart TB
     class L4,OUT tuned;
     class IN,PRED io;
 ```
-
