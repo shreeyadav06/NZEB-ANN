@@ -4,6 +4,7 @@ tech_report_page_*.png
 *.html
 *.htm
 build_diagrams_*.py
+generate_academic_figures.py
 research paper/figures/test_*.png
 research paper/preview_v2/
 
