@@ -122,4 +122,4 @@ research paper/*.synctex.gz
 research paper/**/*.html
 research paper/preview_v2/
 research paper/preview_v2/**
-
+figures_v2
