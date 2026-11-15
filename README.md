@@ -47,14 +47,14 @@ The models are rigorously evaluated using standard regression metrics:
 The cross-climate transfer learning framework operates across four distinct phases: Data Ingestion & Integration, Feature Engineering, Source Pre-Training (Zone 2B), and Climate Transfer & Adaptation (Zone 6A).
 
 <p align="center">
-  <img src="research%20paper/figures/System_Pipeline.png" alt="System Pipeline" width="100%" />
+  <img src="results_v4/figures/System_Pipeline.png" alt="System Pipeline" width="100%" />
 </p>
 
 ### Deep Neural Network Architecture & Parameter-Freezing Scheme
 The deep feed-forward ANN contains 4 hidden dense layers `[256 -> 128 -> 64 -> 32 -> 1]`. For cross-climate transfer learning, layers 1–3 (43,584 parameters; 95.4% of total weights) are frozen to preserve thermodynamic invariants, while Layer 4 and the Linear output head are fine-tuned on the target climate.
 
 <p align="center">
-  <img src="research%20paper/figures/ANN_Architecture.png" alt="ANN Architecture" width="450" />
+  <img src="results_v4/figures/ANN_Architecture.png" alt="ANN Architecture" width="450" />
 </p>
 
 The workflow is structured into 5 discrete experimental phases:
