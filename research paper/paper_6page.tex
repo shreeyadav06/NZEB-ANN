@@ -57,7 +57,7 @@ Transfer learning, building energy prediction, net-zero energy buildings, climat
 \section{Introduction}
 Building energy consumption accounts for approximately 40\% of global final energy consumption and over one-third of greenhouse gas emissions. Net-Zero Energy Buildings (NZEBs) mitigate this environmental footprint by balancing annual on-site renewable energy generation with building demand. Realizing net-zero operations requires reliable hourly energy forecasting models to manage predictive HVAC controls, schedule electrical energy storage, and optimize grid interactions \cite{b1}, \cite{b8}.
 
-Data-driven approaches, including artificial neural networks (ANNs) and gradient-boosted decision trees, have become dominant tools for operational forecasting due to fast inference times and capacity to learn non-linear thermal dynamics \cite{b6}, \cite{b7}. Nevertheless, empirical forecasting models face two practical challenges: data scarcity during early building commissioning and geographic climate dependency \cite{b5}, \cite{b9}. 
+Data-driven approaches, including artificial neural networks (ANNs) and gradient-boosted decision trees, have become dominant tools for operational forecasting due to fast inference times and capacity to learn non-linear thermal dynamics \cite{b6}, \cite{b7}. However, empirical forecasting models face two practical challenges: data scarcity during early building commissioning and geographic climate dependency \cite{b5}, \cite{b9}. 
 
 The first challenge is the cold-start problem. Newly constructed or retrofitted facilities rarely possess the multi-month or annual operational meter records required to train deep architectures from scratch. Training complex models on short-duration data causes severe overfitting, preventing generalization across unobserved seasonal cycles \cite{b4}, \cite{b13}. The second challenge is climate lock-in. Models trained in hot-arid regions fail when deployed directly in cold-humid or marine environments, because shifts in ambient temperature ranges, humidity ratios, and solar insolation alter the underlying relationship between weather and electrical demand \cite{b15}, \cite{b16}.
 
@@ -74,7 +74,7 @@ This work addresses this gap by investigating cross-climate transfer learning ac
 
 The contributions of this study are:
 \begin{enumerate}
-    \item We demonstrate that freezing early feature-extraction layers enables robust cross-climate transfer, increasing $R^2$ accuracy from 0.8124 to 0.9936 under extreme data scarcity (5\% target data).
+    \item We demonstrate that freezing early feature-extraction layers enables stable cross-climate transfer, increasing $R^2$ accuracy from 0.8124 to 0.9936 under extreme data scarcity (5\% target data).
     \item We identify and quantify an empirical crossover threshold between 30\% and 50\% target data availability, establishing where unconstrained training from scratch matches parameter-frozen transfer models.
     \item We benchmark cross-climate transferability across a tripartite matrix of ASHRAE climate zones (2B, 3C, and 6A), demonstrating that ordinal climatic distance directly influences transfer performance.
 \end{enumerate}
@@ -244,7 +244,7 @@ Validation loss trajectories at 5\% data availability (Fig.~\ref{fig_convergence
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.85\columnwidth]{figures/Transferability_Heatmap.png}
-\caption{Cross-climate transferability matrix displaying mean $R^2$ performance for direct baseline training (diagonal) and cross-climate transfer (off-diagonal) across Climate Zones 2B, 3C, and 6A.}
+\caption{Cross-climate transferability matrix displaying mean $R^2$ performance for direct baseline training (diagonal) and cross-climate transfer (off-diagonal) across three distinct climates: Zone 2B (Hot-Arid), Zone 3C (Marine), and Zone 6A (Cold-Humid).}
 \label{fig_heatmap}
 \end{figure}
 
@@ -254,11 +254,11 @@ Secondary transfer scenarios across Zones 2B, 3C, and 6A (Fig.~\ref{fig_heatmap}
 \subsection{Thermodynamic Analysis of Layer Representations}
 The sustained predictive advantage of transfer learning under extreme data scarcity ($\Delta R^2 = +0.1812$ at 5\% data) can be explained through the hierarchical feature extraction mechanisms of deep neural networks. In building energy systems, electricity consumption is governed by two interacting physical phenomena: base thermal envelope inertia (governed by building envelope thermal capacitance and structural mass) and instantaneous climate forcing (ambient temperature differentials, solar irradiation, and occupant schedules). The pre-trained weights in the lower three dense layers ($[256, 128, 64]$ units) encode generalized temporal representations of occupancy diurnal routines and building thermal delay, which are largely invariant to geographical relocation. 
 
-By freezing layers 1 through 3, the optimization landscape on the target dataset is constrained to learning the target-specific climate scaling and heating/cooling sensitivities represented in the terminal dense layer (32 units) and regression head. This structural regularizer prevents gradient explosion and catastrophic parameter drift when training on brief 2.5-week observation windows, whereas the newly initialized scratch network attempts to optimize all 45,000+ parameters simultaneously, resulting in severe overfitting to unrepresentative shoulder-season weather patterns.
+By freezing layers 1 through 3, the optimization search space on the target dataset is constrained to learning the target-specific climate scaling and heating/cooling sensitivities represented in the terminal dense layer (32 units) and regression head. This structural regularizer prevents gradient explosion and catastrophic parameter drift when training on brief 2.5-week observation windows, whereas the newly initialized scratch network attempts to optimize all 45,000+ parameters simultaneously, resulting in severe overfitting to unrepresentative shoulder-season weather patterns.
 
 
 \subsection{Edge Computing and Deployment Efficiency}
-Deploying predictive forecasting models on edge devices (such as IoT gateways and on-site building management microcontrollers) poses stringent memory and latency constraints. The proposed parameter-freezing strategy directly reduces computational overhead during local model adaptation. Freezing layers 1 through 3 locks 43,584 parameters, requiring backward error propagation and gradient updates for only 2,081 parameters in layer 4 and the regression output head. This 95.2\% reduction in active trainable weights lowers training memory requirements by approximately 70\% and accelerates per-epoch execution time by 40\% on commodity hardware (Intel Core i7 CPU, 2.8 GHz), yielding average inference latencies below 4.2 ms per hourly observation. Consequently, edge gateways can fine-tune localized energy models autonomously without streaming proprietary operational telemetry to external cloud servers, enhancing data privacy and operational resilience.
+Deploying predictive forecasting models on edge devices (such as IoT gateways and on-site building management microcontrollers) poses stringent memory and latency constraints. The proposed parameter-freezing strategy directly reduces computational overhead during local model adaptation. Freezing layers 1 through 3 locks 43,584 parameters, requiring backward error propagation and gradient updates for only 2,081 parameters in layer 4 and the regression output head. This 95.2\% reduction in active trainable weights lowers training memory requirements by approximately 70\% and accelerates per-epoch execution time by 40\% on commodity hardware (Intel Core i7 CPU, 2.8 GHz), yielding average inference latencies below 4.2 ms per hourly observation. As a result, edge gateways can fine-tune localized energy models autonomously without streaming proprietary operational telemetry to external cloud servers, enhancing data privacy and operational resilience.
 
 \subsection{Practical Implications for Building Operations}
 These findings provide three guidelines for NZEB operations:

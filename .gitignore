@@ -1,3 +1,9 @@
+# Reference materials
+technical_report.pdf
+tech_report_page_*.png
+research paper/figures/*.html
+research paper/figures/test_*.png
+
 # Python
 __pycache__/
 *.py[cod]
