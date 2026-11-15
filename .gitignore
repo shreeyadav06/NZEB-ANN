@@ -107,9 +107,6 @@ generate_mermaid_figures.py
 /paper.pdf
 /paper.tex
 /MERMAID_DIAGRAMS.md
-/results_v4/figures/*.mmd
-/results_v4/figures/ANN_Architecture.png
-/results_v4/figures/System_Pipeline.png
 
 # Whitelist research paper artifacts
 !research paper/

@@ -1,0 +1,30 @@
+flowchart TB
+    IN["Input Layer: 16 Features<br>(Meteorological, Cyclic Time, Building Metadata)"]
+    
+    subgraph FROZEN ["Generalized Physics Layers (Frozen in TL)"]
+        direction TB
+        L1["Dense Layer 1: 256 Units (ReLU)"]
+        L2["Dense Layer 2: 128 Units (ReLU)"]
+        L3["Dense Layer 3: 64 Units (ReLU)"]
+        L1 --> L2 --> L3
+    end
+
+    subgraph TRAIN ["Target-Specific Adaptation (Trainable)"]
+        direction TB
+        L4["Dense Layer 4: 32 Units (ReLU)"]
+        OUT["Output Layer: 1 Unit (Linear)"]
+        L4 --> OUT
+    end
+
+    PRED["Predicted Energy: expm1(y) Inversion (kWh)"]
+
+    IN --> FROZEN
+    FROZEN --> TRAIN
+    TRAIN --> PRED
+
+    classDef frozen fill:#E8F0FE,stroke:#1A73E8,stroke-width:2px,color:#174EA6,font-weight:bold;
+    classDef tuned fill:#E6F4EA,stroke:#137333,stroke-width:2px,color:#0D652D,font-weight:bold;
+    classDef io fill:#F1F3F4,stroke:#5F6368,stroke-width:1.5px,color:#202124,font-weight:bold;
+    class L1,L2,L3 frozen;
+    class L4,OUT tuned;
+    class IN,PRED io;
