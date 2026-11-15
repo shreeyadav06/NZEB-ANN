@@ -114,17 +114,17 @@ yielding $d=4$ between Zone 2B and Zone 6A (maximum contrast), $d=1$ between 2B 
 \begin{table}[t]
 \caption{Experimental Domains and Climate Classifications}
 \centering
-\setlength{\tabcolsep}{4pt}
-\footnotesize
+\resizebox{0.92\columnwidth}{!}{%
 \begin{tabular}{llccc}
 \toprule
-\textbf{Site ID} & \textbf{Location (De-anonymized)} & \textbf{Zone} & \textbf{Climate Type} & \textbf{Role} \\
+\textbf{Site ID} & \textbf{Location} & \textbf{Zone} & \textbf{Climate Type} & \textbf{Role} \\
 \midrule
-Site 2  & Arizona State Univ. (Tempe, AZ) & 2B & Hot-Arid   & Primary Source \\
-Site 4  & UC Berkeley (Berkeley, CA)       & 3C & Marine     & Secondary \\
-Site 15 & Cornell Univ. (Ithaca, NY)        & 6A & Cold-Humid & Primary Target \\
+Site 2  & ASU (Tempe, AZ)      & 2B & Hot-Arid   & Primary Source \\
+Site 4  & UC Berkeley (CA)     & 3C & Marine     & Secondary \\
+Site 15 & Cornell Univ. (NY)   & 6A & Cold-Humid & Primary Target \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \label{tab_domains}
 \end{table}
 
@@ -167,8 +167,7 @@ Transfer fine-tuning uses $\eta_{\text{transfer}} = 10^{-4}$ for rapid adaptatio
 \begin{table}[t]
 \caption{Model Hyperparameters and Training Configuration}
 \centering
-\setlength{\tabcolsep}{4pt}
-\footnotesize
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{lcc}
 \toprule
 \textbf{Hyperparameter} & \textbf{Baseline (Scratch)} & \textbf{Transfer Model} \\
@@ -182,7 +181,8 @@ Batch Size              & 256                     & 256 \\
 Max Epochs / Patience   & 50 / 10                 & 50 / 10 \\
 Cross-Validation        & 5-Fold Stratified       & 5-Fold Stratified \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \label{tab_hyperparams}
 \end{table}
 
@@ -197,12 +197,11 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}, \quad \text{R
 \begin{table}[t]
 \caption{Cross-Climate Data Efficiency Results (Tempe $\to$ Cornell)}
 \centering
-\setlength{\tabcolsep}{4pt}
-\footnotesize
+\resizebox{0.95\columnwidth}{!}{%
 \begin{tabular}{ccccc}
 \toprule
-\textbf{Target Data} & \textbf{Scratch $R^2$} & \textbf{Transfer $R^2$} & \textbf{Transfer Gain} & \textbf{Transfer RMSE} \\
-\textbf{Fraction}   & \textbf{(Mean)}       & \textbf{(Mean)}        & \textbf{($\Delta R^2$)} & \textbf{(kWh)} \\
+\textbf{Target} & \textbf{Scratch ^2$} & \textbf{Transfer ^2$} & \textbf{Transfer Gain} & \textbf{Transfer RMSE} \\
+\textbf{Data}   & \textbf{(Mean)}       & \textbf{(Mean)}        & \textbf{($\Delta R^2$)} & \textbf{(kWh)} \\
 \midrule
 5\%   & 0.8124 & 0.9936 & \textbf{+0.1812} & 14.18 \\
 10\%  & 0.9798 & 0.9955 & \textbf{+0.0157} & 11.79 \\
@@ -211,7 +210,8 @@ R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}, \quad \text{R
 50\%  & 0.9992 & 0.9987 & -0.0005 & 6.21 \\
 100\% & 0.9998 & 0.9989 & -0.0009 & 5.92 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \label{tab_efficiency}
 \end{table}
 
