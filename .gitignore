@@ -1,8 +1,14 @@
 # Reference materials
 technical_report.pdf
 tech_report_page_*.png
-research paper/figures/*.html
-research paper/figures/test_*.png
+*.html
+*.htm
+research\ paper/figures/test_*.png
+build_diagrams_with_skill.py
+
+# Skills and Agent tools
+.agents/
+skills-lock.json
 
 # Python
 __pycache__/
@@ -111,4 +117,5 @@ research paper/*.log
 research paper/*.out
 research paper/*.toc
 research paper/*.synctex.gz
+research paper/**/*.html
 
