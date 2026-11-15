@@ -32,8 +32,17 @@
   - `System_Pipeline.png` & `.mmd` (Horizontal 4-stage transfer learning methodology)
   - `ANN_Architecture.png` & `.mmd` (Vertical neural network architecture and frozen layers)
   - `Primary_Data_Efficiency.png` (Data efficiency curves and crossover point)
-  - `Convergence_Plots.png` (Loss convergence across data fractions)
+  - `Convergence_Plots.png` (Loss curves)
   - `Transferability_Heatmap.png` (Cross-climate transferability performance matrix)
+
+### Key Figures Preview
+#### System Pipeline Architecture (Figure 1)
+![System Pipeline](figures/System_Pipeline.png)
+
+#### ANN Architecture & Parameter Freezing (Figure 2)
+<p align="left">
+  <img src="figures/ANN_Architecture.png" alt="ANN Architecture" width="380" />
+</p>
 
 ---
 
